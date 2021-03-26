@@ -121,6 +121,12 @@ r''' +------+
                     self.strikes += 1
                 break
 
+    def check_win(self) -> bool:
+        for ch in self.word:
+            if ch not in self.guesses:
+                return False
+        return True
+
     def run(self):
         while(1):
             system('cls')
@@ -129,6 +135,9 @@ r''' +------+
             self.print_used_characters()
             if(self.strikes == self.max_strikes - 1):
                 print(f'The word was {self.word}!')
+                break
+            elif(self.check_win()):
+                print('You Win!')
                 break
             self.get_input()
 
